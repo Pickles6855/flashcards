@@ -1,0 +1,195 @@
+[gd_scene load_steps=7 format=3 uid="uid://h8xyv50dpf2k"]
+
+[ext_resource type="Script" path="res://scripts/main_menu/main_menu.gd" id="1_7cqx1"]
+[ext_resource type="Theme" uid="uid://ksv4x5nqbpko" path="res://resources/theme.tres" id="1_sagfr"]
+[ext_resource type="Script" path="res://scripts/main_menu/selected_set_info.gd" id="3_0x3w7"]
+[ext_resource type="Texture2D" uid="uid://70julcclk8gg" path="res://assets/icons/logo_full.png" id="3_vi5dk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8chgr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5x7p"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.921569, 0.45098, 0.235294, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="MainMenu" type="VBoxContainer"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1980.0
+offset_bottom = 1230.0
+theme = ExtResource("1_sagfr")
+theme_override_constants/separation = 30
+script = ExtResource("1_7cqx1")
+
+[node name="Title" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(2.08165e-12, 75)
+layout_mode = 2
+texture = ExtResource("3_vi5dk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="SelectSetPanel" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SelectSet" type="VBoxContainer" parent="HBoxContainer/SelectSetPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/SelectSetPanel/SelectSet"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Select Set"
+horizontal_alignment = 1
+
+[node name="SelectTags" type="ItemList" parent="HBoxContainer/SelectSetPanel/SelectSet"]
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/h_separation = 20
+allow_search = false
+auto_height = true
+item_count = 3
+max_columns = 10
+item_0/text = "All"
+item_1/text = "Vocab Tests"
+item_2/text = "German"
+
+[node name="Spacer" type="Control" parent="HBoxContainer/SelectSetPanel/SelectSet"]
+custom_minimum_size = Vector2(2.08165e-12, 30)
+layout_mode = 2
+
+[node name="SetsTabContainer" type="TabContainer" parent="HBoxContainer/SelectSetPanel/SelectSet"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+tabs_visible = false
+
+[node name="SetsScrollContainer" type="ScrollContainer" parent="HBoxContainer/SelectSetPanel/SelectSet/SetsTabContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_tab_index = 0
+
+[node name="SetsContainer" type="VBoxContainer" parent="HBoxContainer/SelectSetPanel/SelectSet/SetsTabContainer/SetsScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="NoSetsFound" type="Label" parent="HBoxContainer/SelectSetPanel/SelectSet/SetsTabContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "No sets with the selected tag were found"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_tab_index = 1
+
+[node name="SelectedSetInfoPanel" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="SelectedSetInfoTabs" type="TabContainer" parent="HBoxContainer/SelectedSetInfoPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8chgr")
+current_tab = 0
+tabs_visible = false
+script = ExtResource("3_0x3w7")
+
+[node name="SelectedSetInfo" type="VBoxContainer" parent="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+metadata/_tab_index = 0
+
+[node name="SetName" type="Label" parent="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs/SelectedSetInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Set Name"
+horizontal_alignment = 1
+
+[node name="SetCardCount" type="Label" parent="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs/SelectedSetInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "15 Cards"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs/SelectedSetInfo"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 30
+text = "Last Played"
+horizontal_alignment = 1
+
+[node name="SetLastPlayed" type="Label" parent="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs/SelectedSetInfo"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "7/18/2024"
+horizontal_alignment = 1
+
+[node name="PracticeSetBtn" type="Button" parent="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs/SelectedSetInfo"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_i5x7p")
+text = "Practice Set"
+
+[node name="EditSetBtn" type="Button" parent="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs/SelectedSetInfo"]
+layout_mode = 2
+text = "Edit Set"
+
+[node name="DeleteSetBtn" type="Button" parent="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs/SelectedSetInfo"]
+layout_mode = 2
+text = "Delete Set"
+
+[node name="NoSetSelected" type="VBoxContainer" parent="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+metadata/_tab_index = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs/NoSetSelected"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Select a Set to See More"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs/NoSetSelected"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 30
+text = "Don't have a set?"
+horizontal_alignment = 1
+
+[node name="NewSetBtn" type="Button" parent="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs/NoSetSelected"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "New Set"
+
+[connection signal="item_selected" from="HBoxContainer/SelectSetPanel/SelectSet/SelectTags" to="." method="update_sets"]
+[connection signal="pressed" from="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs/SelectedSetInfo/PracticeSetBtn" to="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs" method="_on_practice_set_btn_pressed"]
+[connection signal="pressed" from="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs/SelectedSetInfo/EditSetBtn" to="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs" method="_on_edit_set_btn_pressed"]
+[connection signal="pressed" from="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs/SelectedSetInfo/DeleteSetBtn" to="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs" method="_on_delete_set_btn_pressed"]
+[connection signal="pressed" from="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs/NoSetSelected/NewSetBtn" to="HBoxContainer/SelectedSetInfoPanel/SelectedSetInfoTabs" method="_on_new_set_btn_pressed"]

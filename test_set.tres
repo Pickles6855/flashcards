@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="FlashcardsSet" load_steps=5 format=3 uid="uid://fay304b286yn"]
+
+[ext_resource type="Script" path="res://scripts/save_resources/flashcard_set.gd" id="1_jcu5b"]
+[ext_resource type="Script" path="res://scripts/save_resources/flashcard.gd" id="2_v6oyn"]
+
+[sub_resource type="Resource" id="Resource_npd85"]
+script = ExtResource("2_v6oyn")
+card_front = "Card 1 Front"
+card_back = "Card 1 Back"
+
+[sub_resource type="Resource" id="Resource_b3icn"]
+script = ExtResource("2_v6oyn")
+card_front = "Card 2 Front"
+card_back = "Card 2 Back"
+
+[resource]
+script = ExtResource("1_jcu5b")
+set_name = "Test Set"
+set_cards = Array[ExtResource("2_v6oyn")]([SubResource("Resource_npd85"), SubResource("Resource_b3icn")])
+tags = Array[String]([])
+last_played = {}

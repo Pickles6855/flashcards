@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdpdipkcknlku"]
+
+[ext_resource type="Theme" uid="uid://ksv4x5nqbpko" path="res://resources/theme.tres" id="1_afg3i"]
+[ext_resource type="Script" path="res://scripts/edit/edit_card.gd" id="2_tof3v"]
+[ext_resource type="Texture2D" uid="uid://bvi1m27x00ahs" path="res://assets/icons/edit/remove_card.svg" id="4_xduj5"]
+[ext_resource type="Texture2D" uid="uid://dka8ueip5mwmd" path="res://assets/icons/edit/remove_card_hover.svg" id="5_gngv1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cwhh"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.14902, 0.14902, 0.14902, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="EditCard" type="PanelContainer"]
+size_flags_horizontal = 3
+theme = ExtResource("1_afg3i")
+theme_override_styles/panel = SubResource("StyleBoxFlat_6cwhh")
+script = ExtResource("2_tof3v")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="FrontText" type="TextEdit" parent="HBoxContainer"]
+custom_minimum_size = Vector2(500, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../BackText")
+focus_next = NodePath("../BackText")
+placeholder_text = "Card Front"
+wrap_mode = 1
+
+[node name="BackText" type="TextEdit" parent="HBoxContainer"]
+custom_minimum_size = Vector2(500, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../FrontText")
+focus_previous = NodePath("../FrontText")
+placeholder_text = "Card Back"
+wrap_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="DeleteCardBtn" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
+self_modulate = Color(0.776471, 0.776471, 0.776471, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 6
+texture_normal = ExtResource("4_xduj5")
+texture_pressed = ExtResource("5_gngv1")
+texture_hover = ExtResource("5_gngv1")
+ignore_texture_size = true
+stretch_mode = 5

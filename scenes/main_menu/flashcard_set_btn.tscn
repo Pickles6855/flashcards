@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://eideaomo61sr"]
+
+[ext_resource type="ButtonGroup" uid="uid://oi86aepa22vr" path="res://resources/flashcard_sets_btn_group.tres" id="1_em8ux"]
+[ext_resource type="Theme" uid="uid://ksv4x5nqbpko" path="res://resources/theme.tres" id="1_kupxq"]
+[ext_resource type="Script" path="res://scripts/main_menu/flashcard_set_btn.gd" id="3_1foey"]
+
+[node name="FlashcardSetBtn" type="Button"]
+size_flags_horizontal = 3
+theme = ExtResource("1_kupxq")
+toggle_mode = true
+button_group = ExtResource("1_em8ux")
+text = "Flashcard Set"
+script = ExtResource("3_1foey")

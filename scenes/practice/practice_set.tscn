@@ -1,0 +1,203 @@
+[gd_scene load_steps=11 format=3 uid="uid://ci72srttjcup5"]
+
+[ext_resource type="Theme" uid="uid://ksv4x5nqbpko" path="res://resources/theme.tres" id="1_0juht"]
+[ext_resource type="Script" path="res://scripts/practice/practice_set.gd" id="2_vg4na"]
+[ext_resource type="Texture2D" uid="uid://buhn0q30vjxga" path="res://assets/icons/play/previous_card.svg" id="3_hi6tf"]
+[ext_resource type="Texture2D" uid="uid://bvo35y4xvb5tt" path="res://assets/icons/play/previous_card_hover.svg" id="4_uhkpq"]
+[ext_resource type="Texture2D" uid="uid://c3klua7poili5" path="res://assets/icons/play/next_card.svg" id="5_bj8ql"]
+[ext_resource type="Texture2D" uid="uid://3pomb6txfh7r" path="res://assets/icons/play/next_card_hover.svg" id="6_0uq2t"]
+[ext_resource type="Script" path="res://scripts/practice/card_panel_container.gd" id="7_nd1ra"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ykncf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jwset"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2b8gc"]
+
+[node name="PracticeSet" type="TabContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0juht")
+current_tab = 0
+tabs_visible = false
+script = ExtResource("2_vg4na")
+
+[node name="PracticeSet" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_0juht")
+metadata/_tab_index = 0
+
+[node name="SetName" type="Label" parent="PracticeSet"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Set Name"
+horizontal_alignment = 1
+
+[node name="Spacer3" type="Control" parent="PracticeSet"]
+custom_minimum_size = Vector2(2.08165e-12, 10)
+layout_mode = 2
+
+[node name="ProgressContainer" type="HBoxContainer" parent="PracticeSet"]
+layout_mode = 2
+
+[node name="PrevCardBtn" type="TextureButton" parent="PracticeSet/ProgressContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("3_hi6tf")
+texture_pressed = ExtResource("4_uhkpq")
+texture_hover = ExtResource("4_uhkpq")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="PracticeProgress" type="Label" parent="PracticeSet/ProgressContainer"]
+custom_minimum_size = Vector2(150, 2.08165e-12)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "3 / 15"
+horizontal_alignment = 1
+
+[node name="NextCardBtn" type="TextureButton" parent="PracticeSet/ProgressContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 2
+texture_normal = ExtResource("5_bj8ql")
+texture_pressed = ExtResource("6_0uq2t")
+texture_hover = ExtResource("6_0uq2t")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Spacer" type="Control" parent="PracticeSet"]
+custom_minimum_size = Vector2(2.08165e-12, 50)
+layout_mode = 2
+
+[node name="CardPanelContainer" type="PanelContainer" parent="PracticeSet"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("7_nd1ra")
+
+[node name="CardVBox" type="VBoxContainer" parent="PracticeSet/CardPanelContainer"]
+layout_mode = 2
+
+[node name="CardSide" type="Label" parent="PracticeSet/CardPanelContainer/CardVBox"]
+layout_mode = 2
+text = "Front"
+horizontal_alignment = 1
+
+[node name="CardSideTabs" type="TabContainer" parent="PracticeSet/CardPanelContainer/CardVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+tabs_visible = false
+
+[node name="CardFront" type="Label" parent="PracticeSet/CardPanelContainer/CardVBox/CardSideTabs"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.666667, 0.4, 1)
+theme_override_font_sizes/font_size = 70
+text = "Card Front"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 4
+metadata/_tab_index = 0
+
+[node name="CardBack" type="Label" parent="PracticeSet/CardPanelContainer/CardVBox/CardSideTabs"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 0.666667, 0.4, 1)
+theme_override_font_sizes/font_size = 70
+text = "Card Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 4
+metadata/_tab_index = 1
+
+[node name="FlipCardBtn" type="Button" parent="PracticeSet/CardPanelContainer/CardVBox"]
+layout_mode = 2
+tooltip_text = "Space or click on the card"
+theme_override_colors/font_hover_color = Color(0.94902, 0.94902, 0.94902, 1)
+theme_override_colors/font_focus_color = Color(0.65098, 0.65098, 0.65098, 1)
+theme_override_colors/font_color = Color(0.65098, 0.65098, 0.65098, 1)
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ykncf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jwset")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2b8gc")
+text = "Flip Card"
+
+[node name="Spacer2" type="Control" parent="PracticeSet"]
+custom_minimum_size = Vector2(2.08165e-12, 50)
+layout_mode = 2
+
+[node name="RightWrongBtns" type="HBoxContainer" parent="PracticeSet"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="RightBtn" type="Button" parent="PracticeSet/RightWrongBtns"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "R"
+text = "Right"
+
+[node name="WrongBtn" type="Button" parent="PracticeSet/RightWrongBtns"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "W"
+text = "Wrong"
+
+[node name="FinishedSet" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 20
+metadata/_tab_index = 1
+
+[node name="SetName" type="Label" parent="FinishedSet"]
+layout_mode = 2
+size_flags_vertical = 10
+size_flags_stretch_ratio = 0.75
+theme_override_font_sizes/font_size = 50
+text = "Set Name"
+horizontal_alignment = 1
+
+[node name="RightPercent" type="Label" parent="FinishedSet"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 70
+text = "100%"
+horizontal_alignment = 1
+
+[node name="RightNumber" type="Label" parent="FinishedSet"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "15/15"
+horizontal_alignment = 1
+
+[node name="PracticeAgainBtn" type="Button" parent="FinishedSet"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Practice Again"
+
+[node name="BackToSetsBtn" type="Button" parent="FinishedSet"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.75
+text = "Back To Sets"
+
+[connection signal="pressed" from="PracticeSet/ProgressContainer/PrevCardBtn" to="." method="_on_prev_card_btn_pressed"]
+[connection signal="pressed" from="PracticeSet/ProgressContainer/NextCardBtn" to="." method="_on_next_card_btn_pressed"]
+[connection signal="pressed" from="PracticeSet/CardPanelContainer/CardVBox/FlipCardBtn" to="." method="_on_flip_card_btn_pressed"]
+[connection signal="pressed" from="PracticeSet/RightWrongBtns/RightBtn" to="." method="_on_right_btn_pressed"]
+[connection signal="pressed" from="PracticeSet/RightWrongBtns/WrongBtn" to="." method="_on_wrong_btn_pressed"]
+[connection signal="pressed" from="FinishedSet/PracticeAgainBtn" to="." method="_on_practice_again_btn_pressed"]
+[connection signal="pressed" from="FinishedSet/BackToSetsBtn" to="." method="_on_back_to_sets_btn_pressed"]

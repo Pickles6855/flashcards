@@ -1,0 +1,208 @@
+[gd_scene load_steps=11 format=3 uid="uid://yjlj4kf477hb"]
+
+[ext_resource type="Script" path="res://scripts/edit_set.gd" id="1_o4rbo"]
+[ext_resource type="Theme" uid="uid://ksv4x5nqbpko" path="res://resources/theme.tres" id="1_sss0g"]
+[ext_resource type="Script" path="res://scripts/edit/add_tag_popup.gd" id="3_78aes"]
+[ext_resource type="PackedScene" uid="uid://cdpdipkcknlku" path="res://scenes/edit/edit_card.tscn" id="3_pfv77"]
+[ext_resource type="Script" path="res://scripts/edit/remove_tag_popup.gd" id="4_tfs4k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vucjx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rf4g8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wqa6i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5a3h"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.921569, 0.45098, 0.235294, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyq06"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.219608, 0.219608, 0.219608, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 5
+
+[node name="EditSet" type="HBoxContainer"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1980.0
+offset_bottom = 1230.0
+theme = ExtResource("1_sss0g")
+theme_override_constants/separation = 30
+script = ExtResource("1_o4rbo")
+
+[node name="CardsPanel" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CardsPanel"]
+layout_mode = 2
+
+[node name="CardsScrollContainer" type="ScrollContainer" parent="CardsPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CardsContainer" type="VBoxContainer" parent="CardsPanel/VBoxContainer/CardsScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 25
+
+[node name="EditCard" parent="CardsPanel/VBoxContainer/CardsScrollContainer/CardsContainer" instance=ExtResource("3_pfv77")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="NewCardBtn" type="Button" parent="CardsPanel/VBoxContainer"]
+layout_mode = 2
+text = "New Card"
+
+[node name="SetInfoPanel" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="SetInfoContainer" type="VBoxContainer" parent="SetInfoPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="EditSetName" type="LineEdit" parent="SetInfoPanel/SetInfoContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "My Set"
+placeholder_text = "Set Name"
+
+[node name="SelectTags" type="ItemList" parent="SetInfoPanel/SetInfoContainer"]
+clip_contents = false
+layout_mode = 2
+tooltip_text = "Use Cmd/Ctrl Click to Select Multiple"
+theme_override_constants/outline_size = 0
+theme_override_constants/h_separation = 10
+allow_search = false
+auto_height = true
+item_count = 2
+max_columns = 5000
+item_0/text = "Vocab"
+item_1/text = "German "
+
+[node name="ManageTagsBtns" type="HBoxContainer" parent="SetInfoPanel/SetInfoContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="AddTagBtn" type="Button" parent="SetInfoPanel/SetInfoContainer/ManageTagsBtns"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.94902, 0.94902, 0.94902, 1)
+theme_override_colors/font_focus_color = Color(0.65098, 0.65098, 0.65098, 1)
+theme_override_colors/font_color = Color(0.65098, 0.65098, 0.65098, 1)
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vucjx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_rf4g8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wqa6i")
+text = "Add Tag"
+alignment = 0
+
+[node name="RemoveTagBtn" type="Button" parent="SetInfoPanel/SetInfoContainer/ManageTagsBtns"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.94902, 0.94902, 0.94902, 1)
+theme_override_colors/font_focus_color = Color(0.65098, 0.65098, 0.65098, 1)
+theme_override_colors/font_color = Color(0.65098, 0.65098, 0.65098, 1)
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vucjx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_rf4g8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wqa6i")
+text = "Remove Tag"
+alignment = 0
+
+[node name="PracticeSetBtn" type="Button" parent="SetInfoPanel/SetInfoContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_m5a3h")
+text = "Practice Set"
+
+[node name="BackToSetsBtn" type="Button" parent="SetInfoPanel/SetInfoContainer"]
+layout_mode = 2
+text = "Back to Sets"
+
+[node name="Popups" type="Node" parent="."]
+
+[node name="AddTagPopup" type="PopupPanel" parent="Popups"]
+title = "Create Tag"
+initial_position = 1
+size = Vector2i(360, 152)
+always_on_top = true
+extend_to_title = true
+keep_title_visible = true
+theme = ExtResource("1_sss0g")
+script = ExtResource("3_78aes")
+
+[node name="AddTagContainer" type="VBoxContainer" parent="Popups/AddTagPopup"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 330.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Popups/AddTagPopup/AddTagContainer"]
+layout_mode = 2
+text = "Create a tag"
+
+[node name="NewTagName" type="LineEdit" parent="Popups/AddTagPopup/AddTagContainer"]
+custom_minimum_size = Vector2(300, 2.08165e-12)
+layout_mode = 2
+placeholder_text = "Tag Name"
+
+[node name="RemoveTagPopup" type="PanelContainer" parent="Popups"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -605.0
+offset_right = 98.0
+offset_bottom = 605.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_sss0g")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gyq06")
+script = ExtResource("4_tfs4k")
+
+[node name="RemoveTagContainer" type="VBoxContainer" parent="Popups/RemoveTagPopup"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Popups/RemoveTagPopup/RemoveTagContainer"]
+layout_mode = 2
+text = "Remove a tag"
+
+[node name="TagToRemove" type="OptionButton" parent="Popups/RemoveTagPopup/RemoveTagContainer"]
+visibility_layer = 512
+layout_mode = 2
+
+[connection signal="pressed" from="CardsPanel/VBoxContainer/NewCardBtn" to="." method="_on_new_card_btn_pressed"]
+[connection signal="pressed" from="SetInfoPanel/SetInfoContainer/ManageTagsBtns/AddTagBtn" to="." method="_on_add_tag_btn_pressed"]
+[connection signal="pressed" from="SetInfoPanel/SetInfoContainer/ManageTagsBtns/RemoveTagBtn" to="." method="_on_remove_tag_btn_pressed"]
+[connection signal="pressed" from="SetInfoPanel/SetInfoContainer/PracticeSetBtn" to="." method="_on_practice_set_btn_pressed"]
+[connection signal="pressed" from="SetInfoPanel/SetInfoContainer/BackToSetsBtn" to="." method="_on_back_to_sets_btn_pressed"]
